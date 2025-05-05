@@ -57,3 +57,10 @@ export const mv = async (src, dest) => {
     }
 };
 
+export const rm = async (filePath) => {
+    try {
+        await fs.promises.unlink(filePath);
+    } catch {
+        console.log('Operation failed');
+    }
+};
