@@ -16,3 +16,12 @@ export const cat = async (filePath) => {
 };
 
 
+export const add = async (filename, currentDir) => {
+    const filePath = path.join(currentDir, filename);
+    try {
+        await fs.promises.writeFile(filePath, '');
+    } catch {
+        console.log('Operation failed');
+    }
+};
+
