@@ -1,6 +1,5 @@
 import { getWelcomeMessage, getByeMessage } from './constants/messages.js';
-import { initCLI } from './cli/readline';
-import { handleCommand } from './cli/handleCommand';
+import { initCLI } from './cli/readline.js';
 import os from 'os'
 
 const usernameArg = process.argv.find(arg => arg.startsWith('--username='));
@@ -26,7 +25,6 @@ process.stdin.on('data', (data) => {
     } else {
 
     }
-    showDir()
 });
 
 
