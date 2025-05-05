@@ -18,6 +18,7 @@ import {
     showArchitecture
 } from '../services/osInfo.js';
 import { calculateHash } from '../services/hash.js';
+import { compress, decompress } from '../services/compress.js';
 
 export async function handleCommand(input, state) {
     const { command, args } = parseCommand(input);
@@ -134,7 +135,21 @@ export async function handleCommand(input, state) {
                     }
                 }
                 break;
+            case 'compress':
+                if (args.length < 2) {
+                    console.log('❌ compress: missing arguments');
+                } else {
+                    await compress(args[0], args[1], state.currentDir);
+                }
+                break;
 
+            case 'decompress':
+                if (args.length < 2) {
+                    console.log('❌ decompress: missing arguments');
+                } else {
+                    await decompress(args[0], args[1], state.currentDir);
+                }
+                break;
             case '.exit':
                 break;
 
