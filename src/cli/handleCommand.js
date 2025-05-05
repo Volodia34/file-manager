@@ -1,3 +1,4 @@
+import path from 'path';
 import { parseCommand } from '../helpers/parseCommand.js';
 import { cd, ls, up } from '../services/navigation.js';
 import {
@@ -16,6 +17,7 @@ import {
     showUsername,
     showArchitecture
 } from '../services/osInfo.js';
+import { calculateHash } from '../services/hash.js';
 
 export async function handleCommand(input, state) {
     const { command, args } = parseCommand(input);
@@ -116,6 +118,20 @@ export async function handleCommand(input, state) {
                         break;
                     default:
                         console.log('❌ Invalid OS option');
+                }
+                break;
+
+            case 'hash':
+                if (args.length === 0) {
+                    console.log('❌ hash: missing file path');
+                } else {
+                    try {
+                        const fullPath = path.resolve(state.currentDir, args[0]);
+                        const hash = await calculateHash(fullPath);
+                        console.log(hash);
+                    } catch {
+                        console.log('❌ Operation failed');
+                    }
                 }
                 break;
 
