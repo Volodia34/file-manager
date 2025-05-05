@@ -25,3 +25,13 @@ export const add = async (filename, currentDir) => {
     }
 };
 
+
+export const rn = async (filePath, newName) => {
+    try {
+        const dir = path.dirname(filePath);
+        const newPath = path.join(dir, newName);
+        await fs.promises.rename(filePath, newPath);
+    } catch {
+        console.log('Operation failed');
+    }
+};
