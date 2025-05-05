@@ -35,3 +35,14 @@ export const rn = async (filePath, newName) => {
         console.log('Operation failed');
     }
 };
+
+
+export const cp = async (src, dest) => {
+    try {
+        const srcStream = fs.createReadStream(src);
+        const destStream = fs.createWriteStream(path.join(dest, path.basename(src)));
+        await pipeline(srcStream, destStream);
+    } catch {
+        console.log('Operation failed');
+    }
+};
