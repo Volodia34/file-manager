@@ -46,3 +46,14 @@ export const cp = async (src, dest) => {
         console.log('Operation failed');
     }
 };
+
+
+export const mv = async (src, dest) => {
+    try {
+        await cp(src, dest);
+        await fs.promises.unlink(src);
+    } catch {
+        console.log('Operation failed');
+    }
+};
+
