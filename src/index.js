@@ -1,7 +1,11 @@
+import { getWelcomeMessage, getByeMessage } from './constants/messages.js';
+
+
 const usernameArg = process.argv.find(arg => arg.startsWith('--username='));
 const username = usernameArg ? usernameArg.split('=')[1] : 'Anonymous';
 
-console.log(`Welcome to the File Manager, ${username}!`);
+console.log(getWelcomeMessage(username));
+
 
 process.on('SIGINT', () => {
     exitApp();
@@ -17,6 +21,6 @@ process.stdin.on('data', (data) => {
 });
 
 function exitApp() {
-    console.log(`Thank you for using File Manager, ${username}, goodbye!`);
+    console.log(getByeMessage(username));
     process.exit(0);
 }
