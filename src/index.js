@@ -1,5 +1,6 @@
 import { getWelcomeMessage, getByeMessage } from './constants/messages.js';
 import { initCLI } from './cli/readline';
+import { handleCommand } from './cli/handleCommand';
 import os from 'os'
 
 const usernameArg = process.argv.find(arg => arg.startsWith('--username='));
