@@ -1,4 +1,5 @@
 import { getWelcomeMessage, getByeMessage } from './constants/messages.js';
+import { initCLI } from './cli/readline';
 import os from 'os'
 
 const usernameArg = process.argv.find(arg => arg.startsWith('--username='));
@@ -7,6 +8,10 @@ let currentDir = os.homedir()
 
 console.log(getWelcomeMessage(username));
 showDir();
+
+
+initCLI(username, currentDir);
+
 
 process.on('SIGINT', () => {
     exitApp();
@@ -18,11 +23,10 @@ process.stdin.on('data', (data) => {
     if (input === '.exit') {
         exitApp();
     } else {
+
     }
     showDir()
 });
-
-
 
 
 
