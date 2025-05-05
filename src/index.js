@@ -1,7 +1,12 @@
+import { getWelcomeMessage, getByeMessage } from './constants/messages.js';
+import os from 'os'
+
 const usernameArg = process.argv.find(arg => arg.startsWith('--username='));
 const username = usernameArg ? usernameArg.split('=')[1] : 'Anonymous';
+let currentDir = os.homedir()
 
-console.log(`Welcome to the File Manager, ${username}!`);
+console.log(getWelcomeMessage(username));
+showDir();
 
 process.on('SIGINT', () => {
     exitApp();
@@ -14,9 +19,17 @@ process.stdin.on('data', (data) => {
         exitApp();
     } else {
     }
+    showDir()
 });
 
+
+
+
+
 function exitApp() {
-    console.log(`Thank you for using File Manager, ${username}, goodbye!`);
+    console.log(getByeMessage(username));
     process.exit(0);
+}
+function showDir() {
+    console.log(`You are currently in ${currentDir}`);
 }
