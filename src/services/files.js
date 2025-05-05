@@ -25,6 +25,16 @@ export const add = async (filename, currentDir) => {
     }
 };
 
+export const mkdir = async (dirname, currentDir) => {
+    const dirPath = path.join(currentDir, dirname);
+    try {
+        await fs.promises.mkdir(dirPath, { recursive: false });
+    } catch {
+        console.log('Operation failed');
+    }
+};
+
+
 
 export const rn = async (filePath, newName) => {
     try {
